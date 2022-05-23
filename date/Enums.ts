@@ -1,0 +1,11 @@
+// "\u2009" = thinSpace = Viertelgeviert Leerschlag
+enum NzzDateFormats {
+  ShortDate = `D.\u2009M.`,
+  CompactDate = "D.\u2009MMM",
+  Date = "D.\u2009MMMM",
+  FullShortDate = "D.\u2009M.\u2009YYYY",
+  FullDate = "D.\u2009MMMM\u2009YYYY",
+  FullDateTime = "D.\u2009MMMM\u2009YYYY, H.mm\u2009[Uhr]",
+}
+
+export { NzzDateFormats };

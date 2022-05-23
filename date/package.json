@@ -1,0 +1,14 @@
+{
+  "name": "@nzz/et-utils-date",
+  "version": "1.0.0",
+  "description": "Date library containing DayJs wrapper, date formats & label creation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzzdev/ed-tech-utilities.git",
+    "directory": "date"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.2"
+  },
+  "license": "MIT"
+}
