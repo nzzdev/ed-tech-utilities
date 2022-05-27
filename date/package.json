@@ -8,10 +8,11 @@
     "directory": "date"
   },
   "scripts": {
-    "prepublishOnly": "npm run clean && tsc && rollup -c",
+    "prepublishOnly": "npm run test && npm run clean && npm run build && rollup -c",
     "clean": "rimraf dist && rimraf index.js && rimraf index.d.ts",
     "build": "tsc -p .",
-    "start": "npm run build -- -w"
+    "start": "npm run build -- -w",
+    "test": "lab --typescript"
   },
   "files": [
     "index.js",
@@ -24,6 +25,8 @@
     "dayjs": "^1.11.2"
   },
   "devDependencies": {
+    "@hapi/code": "^9.0.0",
+    "@hapi/lab": "^25.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.75.0",
     "rollup-plugin-dts": "^4.2.2",
