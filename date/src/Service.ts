@@ -5,6 +5,8 @@ import isBetween from "dayjs/plugin/isBetween";
 import isToday from "dayjs/plugin/isToday";
 import "dayjs/locale/de";
 
+const dayjsWrapper = dayjs;
+
 dayjs.extend(isBetween);
 dayjs.extend(isToday);
 dayjs.locale("de");
@@ -40,4 +42,4 @@ function createFromToLabel(
   return label;
 }
 
-export { createFromToLabel, dayjs };
+export { createFromToLabel, dayjsWrapper as dayjs };
