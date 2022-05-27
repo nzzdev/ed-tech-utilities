@@ -1,6 +1,6 @@
 // Dayjs init
 import { NzzDateFormats as Formats } from "./Enums";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import isToday from "dayjs/plugin/isToday";
 import "dayjs/locale/de";
