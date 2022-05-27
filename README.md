@@ -7,10 +7,15 @@ Contains all utility packages managed by editorial-tech
 1. `cd <package-folder>`
 2. `npm run dev`
 
+## Testing
+
+1. `cd <package-folder>`
+2. `npm run test`
+
 ## Publication Process
 
 1. `cd <package-folder>`
-2. `npm publish` (automatically runs typescript compiler & rollup bundler)
+2. `npm publish` (automatically runs tests, typescript compiler & rollup bundler)
 
 ## Install Package
 

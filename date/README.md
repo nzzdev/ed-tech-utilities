@@ -2,9 +2,17 @@
 
 ## Content
 
-- [dayjs](https://day.js.org/) wrapper
-- NZZ standardized date formats
-- Helper functions for creating date labels
+### dayjs wrapper
+
+`import { dayjs } from "@nzz/et-utils-date";`
+
+### NZZ Standardized Date Formats
+
+`import { Formats } from "@nzz/et-utils-date";`
+
+### Helper functions for creating date labels
+
+`import { createFromToLabel } from "@nzz/et-utils-date";`
 
 ## Notes
 
