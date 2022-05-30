@@ -5,7 +5,7 @@ Contains all utility packages managed by editorial-tech
 ## Development
 
 1. `cd <package-folder>`
-2. `npm run dev`
+2. `npm run start`
 
 ## Testing
 
