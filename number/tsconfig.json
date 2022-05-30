@@ -2,6 +2,7 @@
   "include": ["src/**/*"],
   "exclude": ["test/**/*"],
   "compilerOptions": {
+    "lib": ["es2018"],
     "target": "es6",
     "outDir": "dist",
     "declaration": true
