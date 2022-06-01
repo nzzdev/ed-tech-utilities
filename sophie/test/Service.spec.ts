@@ -1,19 +1,16 @@
-import * as Lab from "@hapi/lab";
-import { expect } from "@hapi/code";
-import { someFunction } from "../src";
-
-// Hapi Lab init code
-const lab = Lab.script();
-const { describe, it, before } = lab;
-export { lab };
+/* import { getDivergingScale } from "../src/index";
 
 describe("Service", () => {
-  before(() => {});
+  it("should do something", () => {
+    const result = getDivergingScale("#000000", "#000000", 2);
 
-  it("should return the konami cheatcode", () => {
-    const result = someFunction();
-    const expectedResult = "Up, Up, Down, Down, Left, Right, Left, Right, B, A";
+    expect(result).toMatchObject({});
+  });
+});
+ */
 
-    expect(result).to.equal(expectedResult);
+describe("Service", () => {
+  it("should pass", () => {
+    expect("string").toBe("string");
   });
 });

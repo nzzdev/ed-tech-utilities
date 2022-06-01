@@ -1,11 +1,8 @@
 {
-  "include": ["src/**/*"],
-  "exclude": ["test/**/*"],
   "compilerOptions": {
-    "target": "es6",
+    "allowJs": true,
+    "types": ["jest", "node"],
     "moduleResolution": "node",
-    "outDir": "dist",
-    "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   }
