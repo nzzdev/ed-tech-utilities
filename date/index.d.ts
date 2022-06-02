@@ -13,6 +13,6 @@ declare const dayjsWrapper: typeof dayjs;
 /**
  * @description Creates a time period label
  */
-declare function createFromToLabel(fromDate: dayjs.Dayjs, toDate: dayjs.Dayjs, fromFormat?: NzzDateFormats, toFormat?: NzzDateFormats, divider?: string, spacer?: string, withoutHtml?: boolean): string;
+declare function createFromToLabel(fromDate: dayjs.Dayjs, toDate: dayjs.Dayjs, fromFormat?: NzzDateFormats | string, toFormat?: NzzDateFormats | string, divider?: string, spacer?: string, withoutHtml?: boolean): string;
 
 export { NzzDateFormats as Formats, createFromToLabel, dayjsWrapper as dayjs };

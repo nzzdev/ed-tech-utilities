@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-date",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Date library containing DayJs wrapper, date formats & label creation",
   "repository": {
     "type": "git",
