@@ -40,6 +40,10 @@ date.format(Formats.FullDateTime);
 
 ### Helper functions for creating date labels
 
+#### createFromToLabel(fromDate, toDate, fromFormat?, toFormat?, divider?, spacer?, withoutHtml?)
+
+Creates a from-to date label, separated with spans by default for clean line wrapping
+
 ```js
 import { createFromToLabel, dayjs, Formats } from "@nzz/et-utils-date";
 
