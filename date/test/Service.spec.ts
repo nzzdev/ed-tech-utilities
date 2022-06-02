@@ -1,24 +1,18 @@
-import * as Lab from "@hapi/lab";
-import { expect } from "@hapi/code";
 import { createFromToLabel, dayjs } from "../src";
 
-// Hapi Lab init code
-const lab = Lab.script();
-const { describe, it, before } = lab;
-export { lab };
-
 describe("Service", () => {
-  before(() => {});
-
   it("should create a dayjs date", () => {
     const result = dayjs();
 
-    expect(result).to.be.object();
+    expect(result).toBeInstanceOf(Object);
   });
 
   it("should create a from-to date label", () => {
-    const result = createFromToLabel(dayjs(), dayjs());
+    const dateFrom = dayjs("2022-01-20");
+    const dateTo = dayjs("2022-01-30");
+    const result = createFromToLabel(dateFrom, dateTo);
+    const expectedResult = "<span>20. Jan. –</span><span> 30. Jan.</span>";
 
-    expect(result).to.be.string();
+    expect(result).toEqual(expectedResult);
   });
 });
