@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-number",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library containing number formatting helpers",
   "repository": {
     "type": "git",
