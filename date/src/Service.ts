@@ -22,8 +22,8 @@ const shortDash = "\u2013";
 function createFromToLabel(
   fromDate: dayjs.Dayjs,
   toDate: dayjs.Dayjs,
-  fromFormat = Formats.CompactDate,
-  toFormat = Formats.CompactDate,
+  fromFormat: Formats | string = Formats.CompactDate,
+  toFormat: Formats | string = Formats.CompactDate,
   divider = shortDash,
   spacer = thinSpace,
   withoutHtml = false
