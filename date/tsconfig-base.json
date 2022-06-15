@@ -1,0 +1,10 @@
+{
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*"],
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"
+  }
+}
