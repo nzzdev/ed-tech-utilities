@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run test && npm run clean && npm run buildMjs && npm run buildCjs && ./scripts/package-fixup.sh",
-    "clean": "rimraf dist && rimraf index.js && rimraf index.d.ts",
+    "clean": "rimraf dist",
     "buildMjs": "tsc -p tsconfig.json",
     "buildCjs": "tsc -p tsconfig-cjs.json",
     "start": "npm run buildMjs -- -w",
