@@ -124,5 +124,3 @@ export function getSequentialScale(
     .reverse()
     .map(formatHex);
 }
-
-export default getSequentialScale;

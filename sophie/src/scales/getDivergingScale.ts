@@ -119,5 +119,3 @@ export function getDivergingScale(
       return [...leftBranch, ...rightBranch.reverse().slice(1)];
   }
 }
-
-export default getDivergingScale;

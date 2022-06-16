@@ -1,12 +1,8 @@
 {
-  "include": ["src/**/*"],
-  "exclude": ["test/**/*"],
+  "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "target": "es6",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "declaration": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "module": "esnext",
+    "outDir": "dist/mjs",
+    "target": "es6"
   }
 }
