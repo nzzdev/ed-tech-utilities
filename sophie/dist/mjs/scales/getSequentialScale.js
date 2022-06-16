@@ -10,7 +10,7 @@ import { okhsl, samples, interpolate, formatHex } from "culori";
  *
  * @returns An array of sRGB hex codes
  */
-export function getSequentialScale(seedColor, numberOfColors, additionalConfig = {}) {
+function getSequentialScale(seedColor, numberOfColors, additionalConfig = {}) {
     // Merge the configuration with the defaults
     const config = Object.assign(Object.assign({}, defaultConfig), additionalConfig);
     // Create Seed Colour
@@ -85,3 +85,4 @@ export function getSequentialScale(seedColor, numberOfColors, additionalConfig =
         .reverse()
         .map(formatHex);
 }
+export { getSequentialScale };

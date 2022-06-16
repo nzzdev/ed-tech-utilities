@@ -8,4 +8,5 @@ import { CuloriColor } from "./ICuloriColors";
  *
  * @returns An array of sRGB hex codes
  */
-export declare function getSequentialScale(seedColor: string | CuloriColor, numberOfColors: number, additionalConfig?: IConfig): string[];
+declare function getSequentialScale(seedColor: string | CuloriColor, numberOfColors: number, additionalConfig?: IConfig): string[];
+export { getSequentialScale };

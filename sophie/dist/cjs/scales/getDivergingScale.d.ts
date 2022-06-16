@@ -12,4 +12,5 @@ import { CuloriColor } from "./ICuloriColors";
  *                 left branch and the second config is used for the right branch
  *                 of the scale.
  */
-export declare function getDivergingScale(color1: string | CuloriColor, color2: string | CuloriColor, numberOfColors: number, config?: IConfig | [IConfig, IConfig]): string[];
+declare function getDivergingScale(color1: string | CuloriColor, color2: string | CuloriColor, numberOfColors: number, config?: IConfig | [IConfig, IConfig]): string[];
+export { getDivergingScale };

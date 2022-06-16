@@ -20,7 +20,7 @@ import { CuloriColor, IHslColor } from "./ICuloriColors";
  *                 left branch and the second config is used for the right branch
  *                 of the scale.
  */
-export function getDivergingScale(
+function getDivergingScale(
   color1: string | CuloriColor,
   color2: string | CuloriColor,
   numberOfColors: number,
@@ -119,3 +119,5 @@ export function getDivergingScale(
       return [...leftBranch, ...rightBranch.reverse().slice(1)];
   }
 }
+
+export { getDivergingScale };

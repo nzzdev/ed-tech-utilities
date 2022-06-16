@@ -17,7 +17,7 @@ import { okhsl, formatHex } from "culori";
  *                 left branch and the second config is used for the right branch
  *                 of the scale.
  */
-export function getDivergingScale(color1, color2, numberOfColors, config = {}) {
+function getDivergingScale(color1, color2, numberOfColors, config = {}) {
     // Check for obvious disasters
     if (numberOfColors < 2)
         throw new RangeError("Diverging scales must consist of at least two colours.");
@@ -66,3 +66,4 @@ export function getDivergingScale(color1, color2, numberOfColors, config = {}) {
             return [...leftBranch, ...rightBranch.reverse().slice(1)];
     }
 }
+export { getDivergingScale };

@@ -12,7 +12,7 @@ import { CuloriColor } from "./ICuloriColors";
  *
  * @returns An array of sRGB hex codes
  */
-export function getSequentialScale(
+function getSequentialScale(
   seedColor: string | CuloriColor,
   numberOfColors: number,
   additionalConfig: IConfig = {}
@@ -124,3 +124,5 @@ export function getSequentialScale(
     .reverse()
     .map(formatHex);
 }
+
+export { getSequentialScale };
