@@ -1,0 +1,6 @@
+{
+    "type": "commonjs",
+    "dependencies": {
+      "dayjs": "^1.11.2"
+    }
+}
