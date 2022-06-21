@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDivergingScale = void 0;
-const defaultConfig_1 = require("./defaultConfig");
-const getSequentialScale_1 = require("./getSequentialScale");
+const defaultConfig_js_1 = require("./defaultConfig.js");
+const getSequentialScale_js_1 = require("./getSequentialScale.js");
 const culori_1 = require("culori");
 /* "baseUrl": ".",
 "paths": {
@@ -26,7 +26,7 @@ function getDivergingScale(color1, color2, numberOfColors, config = {}) {
         throw new RangeError("Diverging scales must consist of at least two colours.");
     if (numberOfColors > 14)
         throw new RangeError("For more than 14 colour stops use a gradient instead.");
-    const divergingScalesConfig = Object.assign(Object.assign(Object.assign({}, defaultConfig_1.defaultConfig), { 
+    const divergingScalesConfig = Object.assign(Object.assign(Object.assign({}, defaultConfig_js_1.defaultConfig), { 
         /**
          * Use a completely neutral grey, so we don't have any hue shifts
          */
@@ -52,8 +52,8 @@ function getDivergingScale(color1, color2, numberOfColors, config = {}) {
                 okhslColors[1],
             ].map(culori_1.formatHex);
         case 4:
-            let leftBranchForFour = (0, getSequentialScale_1.getSequentialScale)(okhslColors[0], 3, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[0] : config)));
-            let rightBranchForFour = (0, getSequentialScale_1.getSequentialScale)(okhslColors[1], 3, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[1] : config)));
+            let leftBranchForFour = (0, getSequentialScale_js_1.getSequentialScale)(okhslColors[0], 3, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[0] : config)));
+            let rightBranchForFour = (0, getSequentialScale_js_1.getSequentialScale)(okhslColors[1], 3, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[1] : config)));
             return [
                 ...leftBranchForFour.slice(0, 2),
                 ...rightBranchForFour.slice(0, 2).reverse(),
@@ -61,8 +61,8 @@ function getDivergingScale(color1, color2, numberOfColors, config = {}) {
         // Then handle all other cases
         default:
             const numberOfColorsPerBranch = Math.floor(numberOfColors / 2);
-            let leftBranch = (0, getSequentialScale_1.getSequentialScale)(okhslColors[0], numberOfColorsPerBranch + additionalColor, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[0] : config)));
-            let rightBranch = (0, getSequentialScale_1.getSequentialScale)(okhslColors[1], numberOfColorsPerBranch + additionalColor, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[1] : config)));
+            let leftBranch = (0, getSequentialScale_js_1.getSequentialScale)(okhslColors[0], numberOfColorsPerBranch + additionalColor, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[0] : config)));
+            let rightBranch = (0, getSequentialScale_js_1.getSequentialScale)(okhslColors[1], numberOfColorsPerBranch + additionalColor, Object.assign(Object.assign({}, divergingScalesConfig), (Array.isArray(config) ? config[1] : config)));
             if (numberOfColors % 2 === 0) {
                 return [...leftBranch, ...rightBranch.reverse()];
             }

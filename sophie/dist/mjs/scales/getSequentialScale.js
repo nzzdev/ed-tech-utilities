@@ -1,4 +1,4 @@
-import { defaultConfig } from "./defaultConfig";
+import { defaultConfig } from "./defaultConfig.js";
 import { scaleLinear } from "d3-scale";
 // @ts-ignore
 import { okhsl, samples, interpolate, formatHex } from "culori";

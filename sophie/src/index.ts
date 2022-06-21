@@ -1,2 +1,2 @@
-export { getDivergingScale } from "./scales/getDivergingScale";
-export { getSequentialScale } from "./scales/getSequentialScale";
+export { getDivergingScale } from "./scales/getDivergingScale.js";
+export { getSequentialScale } from "./scales/getSequentialScale.js";

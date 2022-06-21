@@ -1,5 +1,5 @@
-import { defaultConfig } from "./defaultConfig";
-import { getSequentialScale } from "./getSequentialScale";
+import { defaultConfig } from "./defaultConfig.js";
+import { getSequentialScale } from "./getSequentialScale.js";
 import { okhsl, formatHex } from "culori";
 /* "baseUrl": ".",
 "paths": {

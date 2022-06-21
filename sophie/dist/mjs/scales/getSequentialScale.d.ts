@@ -1,4 +1,4 @@
-import { IConfig } from "./defaultConfig";
+import { IConfig } from "./defaultConfig.js";
 import { CuloriColor } from "./ICuloriColors";
 /**
  * Create a sequential scale given …

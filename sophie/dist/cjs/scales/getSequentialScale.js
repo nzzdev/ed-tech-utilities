@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSequentialScale = void 0;
-const defaultConfig_1 = require("./defaultConfig");
+const defaultConfig_js_1 = require("./defaultConfig.js");
 const d3_scale_1 = require("d3-scale");
 // @ts-ignore
 const culori_1 = require("culori");
@@ -15,7 +15,7 @@ const culori_1 = require("culori");
  */
 function getSequentialScale(seedColor, numberOfColors, additionalConfig = {}) {
     // Merge the configuration with the defaults
-    const config = Object.assign(Object.assign({}, defaultConfig_1.defaultConfig), additionalConfig);
+    const config = Object.assign(Object.assign({}, defaultConfig_js_1.defaultConfig), additionalConfig);
     // Create Seed Colour
     const seedColorHsl = (0, culori_1.okhsl)(seedColor);
     const maximalLightness = seedColorHsl.l > config.maximalLightness

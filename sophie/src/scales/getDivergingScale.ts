@@ -1,5 +1,5 @@
-import { defaultConfig, IConfig } from "./defaultConfig";
-import { getSequentialScale } from "./getSequentialScale";
+import { defaultConfig, IConfig } from "./defaultConfig.js";
+import { getSequentialScale } from "./getSequentialScale.js";
 import { okhsl, formatHex } from "culori";
 import { CuloriColor, IHslColor } from "./ICuloriColors";
 
