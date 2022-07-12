@@ -1,12 +1,12 @@
 import { formatNumber } from "../src";
-import { thousandSeparator } from "../src/Service";
+import { thousandSeparator, nzzDecimalSeparator } from "../src/Service";
 
 describe("Service", () => {
   it("should format numbers according to the NZZ defaults", () => {
     // No thousand separator, 'de-CH' localized decimal separator '.'
     const input = 999.99;
     const result = formatNumber(input);
-    const expectedResult = "999.99";
+    const expectedResult = `999${nzzDecimalSeparator}99`;
     expect(result).toEqual(expectedResult);
 
     // No thousand separator, removal of trailing decimal zeroes
