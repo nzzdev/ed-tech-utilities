@@ -1,7 +1,7 @@
 {
   "name": "@nzz/et-utils-data",
   "version": "1.0.0",
-  "description": "TODO: Write a package description",
+  "description": "Package for functions that manipulate data.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nzzdev/ed-tech-utilities.git",
