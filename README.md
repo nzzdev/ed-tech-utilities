@@ -2,6 +2,13 @@
 
 Contains all utility packages managed by editorial-tech
 
+## Getting started
+A new utility package can be generate with Q-cli:
+
+```
+Q new-et-utils-package package-name -d my-project-directory
+```
+
 ## Development
 
 1. `cd <package-folder>`
