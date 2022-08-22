@@ -3,10 +3,26 @@
 Contains all utility packages managed by editorial-tech
 
 ## Getting started
-A new utility package can be generate with Q-cli:
+
+1. A new utility package can be generate with Q-cli:
+
+```
+Q new-et-utils-package package-name "package author" "package description"
+```
+
+The directory name where the new ed-tech utility package project is being created defaults to the project name and can be overwritten by using option -d or --dir
 
 ```
 Q new-et-utils-package package-name -d my-project-directory
+```
+
+NOTE: Sometimes the `.gitignore` & `.npmignore` do not get copied over
+
+2. Run npm install from package folder
+
+```
+cd <package-folder>
+npm install
 ```
 
 ## Development
