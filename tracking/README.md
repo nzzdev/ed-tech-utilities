@@ -4,7 +4,36 @@ Library containing tracking related services and functions
 
 ## Content
 
-TODO: Package documentation
+### trackAction(origin: HTMLElement | Event, actionName: string, eventNonInteractive?): void
+
+Tracks action (element/event) and sends data to tracking environment for later usage.
+
+Usage with interactive event
+
+```ts
+import { trackAction } from "@nzz/et-utils-tracking";
+
+const button = document.createElement("button");
+button.onclick = (event: Event) => {
+  // ...
+  trackAction(event, "button-clicked");
+};
+```
+
+Usage with non-interactive element
+
+```ts
+import { trackAction } from "@nzz/et-utils-tracking";
+
+function initHeadingElement() {
+  testElement = document.createElement("h1");
+  testElement.innerHTML = "Lorem Ipsum";
+
+  trackAction(testElement, "heading-element-initialized", true);
+}
+
+initHeadingElement();
+```
 
 ## Modules & Node support
 
