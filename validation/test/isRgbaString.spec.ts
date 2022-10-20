@@ -4,6 +4,9 @@ const correctRGBAs = [
   "rgba(255,255,0,1.0)",
   "rgba(255,255,0,0.5)",
   "rgba(255,255,0,0)",
+  "rgba(255,255,0,.5)", // no leading 0
+  "rgba(255, 255 , 0,15)", // with spaces
+  "rgba( 1%, 2%, 3%, .5)", // with %
 ];
 
 const incorrectRGBAs = [
@@ -13,13 +16,11 @@ const incorrectRGBAs = [
   3,
   NaN,
   "rgb(255, 0, 0)", // rgb
-  "rgb(255,115,15)", // rgb without spaces
-  "rgba(255, 255 , 0,15)", // rgba with spaces
-  "rgba(255,255,0,15)", // alpha > 1
-  "rgba(255,255,0,1.1)", // alpha > 1
-  "rgba(555,255,0,1.1)", // r > 255
+  "rgba(A,255,0,1.1)", // r != number
+  "rgba (1, 2, 3)", // space in front
   "rgb(255,0,0,)", // no alpha
   "rgb(150 0 60 / 0.5)", // alternative rgba format
+  "rgba( 1%, 2, 3%, 0.5)", // partial %
 ];
 
 describe("IsRgbaString", () => {
