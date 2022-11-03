@@ -1,0 +1,12 @@
+{
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "test/**/*"
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "moduleResolution": "node"
+  }
+}

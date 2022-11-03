@@ -1,0 +1,38 @@
+{
+  "name": "@nzz/et-utils-country-flag-emoji",
+  "version": "1.0.0",
+  "description": "Library to insert country flag emojis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzzdev/ed-tech-utilities.git",
+    "directory": "country-flag-emoji"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run buildMjs && npm run buildCjs && ./scripts/package-fixup.sh",
+    "clean": "rimraf dist",
+    "buildMjs": "tsc -p tsconfig.json && terser dist/mjs/index.js --compress -o dist/mjs/index.js",
+    "buildCjs": "tsc -p tsconfig-cjs.json && terser dist/cjs/index.js --compress -o dist/cjs/index.js",
+    "start": "npm run buildMjs -- -w"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.36",
+    "rimraf": "^3.0.2",
+    "terser": "^5.15.1",
+    "ts-jest": "^28.0.3",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.6.4"
+  },
+  "author": "NZZ Editorial Tech",
+  "license": "MIT"
+}
