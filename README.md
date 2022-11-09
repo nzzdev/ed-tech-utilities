@@ -46,7 +46,6 @@ This allows for easy tracking of commits releated to either package name/version
 4. Go to Releases
 5. Create a new release
 6. Add the tag `<package-name>-<package-version-number>` (e.g. `date-1.0.3`)
-7. Add the tag & title `v<utilities-repository-new-release-version-number>` (e.g. `v1.3.5`)
 7. Add release description or point to package readme (if changes are documented)
 
 ## Install Package
