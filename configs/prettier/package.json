@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-config-prettier",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Shared Prettier config",
   "main": "prettier-config.json",
   "repository": {
@@ -10,9 +10,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "publish": "npm publish"
   },
   "peerDependencies": {
     "prettier": "*"
