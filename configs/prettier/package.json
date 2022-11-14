@@ -1,0 +1,22 @@
+{
+  "name": "@nzz/et-utils-config-prettier",
+  "version": "1.0.0",
+  "description": "Shared Prettier config",
+  "main": "prettier-config.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzzdev/ed-tech-utilities.git",
+    "directory": "configs/prettier"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "publish": "npm publish"
+  },
+  "peerDependencies": {
+    "prettier": "*"
+  },
+  "author": "Michel Grautstück",
+  "license": "MIT"
+}
