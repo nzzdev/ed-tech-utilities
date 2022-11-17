@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-validation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library containing validator functions",
   "repository": {
     "type": "git",
