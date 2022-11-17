@@ -5,5 +5,5 @@ export const isRgbaString = (rgba: String): boolean => {
   const regex: RegExp =
     /rgba\(\s*(-?\d+|-?\d*\.\d+(?=%))(%?)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*.\d+)\s*\)/;
 
-  return regex.test(rgba);
+  return regex.test(rgba.toLowerCase().replace(/ +/g, ""));
 };
