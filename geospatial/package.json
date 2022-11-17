@@ -2,6 +2,7 @@
   "name": "@nzz/et-utils-geospatial",
   "version": "1.0.0",
   "description": "Library containing helpers for geospatial data task",
+  "prettier": "@nzz/et-utils-config-prettier",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nzzdev/ed-tech-utilities.git",
@@ -27,6 +28,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@nzz/et-utils-config-prettier": "^1.0.6",
     "@types/jest": "^27.5.1",
     "@types/node": "^16.11.36",
     "jest": "^28.1.0",
