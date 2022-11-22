@@ -3,55 +3,50 @@ import { geoAlbersUsa, geoMercator, geoRobinson } from 'd3-geo-projection';
 import { Feature, FeatureCollection, Geometry } from 'geojson';
 import { feature } from 'topojson-client';
 import { Topology } from 'topojson-specification';
-import { GeoParameters, TopologyObject } from './interfaces';
+import { Projection } from './emums';
+import { BaseMapData, GeoParameters, MapData, TopologyObject } from './interfaces';
 
-export const extractGeoParameters = (
-  baseMap: any, // TODO type baseMap
-  width: number,
-  maxHeight: number,
-  topologyObjectNames: string[],
-  mainFeature: string // REVIEW how much should be put in a config so the function can be refactored later?
-): GeoParameters => {
+export const extractGeoParameters = (mapData: MapData, width: number, maxHeight: number): GeoParameters => {
   // REVIEW should values in objects be required?
-  if (!baseMap?.entities?.objects) throw new Error('invalid basemap provided'); // TODO improve error
+  if (!mapData?.baseMap?.entities?.objects) throw new Error('Invalid baseMap data provided.');
 
-  if (!topologyObjectNames?.length) throw new Error('No topologyObjects provided'); // TODO improve error
+  if (!mapData.topologyObjectNames?.length) throw new Error('No topologyObjects provided.');
 
   // REVIEW choose first if non provided or make mandatory and throw if not provided?
-  if (!mainFeature || !topologyObjectNames.includes(mainFeature))
-    throw new Error('mainFeature does no exist in topologyObjects'); // TODO improve error
+  if (!mapData.mainTopologyObject || !mapData.topologyObjectNames.includes(mapData.mainTopologyObject))
+    throw new Error(`TopologyObject '${mapData.mainTopologyObject}' does no exist in topologyObjects.`);
 
   // create topologyObject for each topologyObjectName
   const topologyObjects: TopologyObject = {};
-  topologyObjectNames.forEach((name) => (topologyObjects[name] = getFeatureCollection(baseMap.entities, name)));
+  mapData.topologyObjectNames.forEach(
+    (name) => (topologyObjects[name] = getFeatureCollection(mapData.baseMap.entities, name))
+  );
 
-  let projection = getProjection(baseMap).fitWidth(width, topologyObjects[mainFeature]);
+  let projection = getProjection(mapData.baseMap).fitWidth(width, topologyObjects[mapData.mainTopologyObject]);
   let path = geoPath(projection);
-  let bounds = path.bounds(topologyObjects[mainFeature]);
+  let bounds = path.bounds(topologyObjects[mapData.mainTopologyObject]);
   const height = bounds[1][1];
 
-  // TODO check if this should be optional
   if (height > maxHeight) {
-    projection = getProjection(baseMap).fitHeight(maxHeight, topologyObjects[mainFeature]);
+    projection = getProjection(mapData.baseMap).fitHeight(maxHeight, topologyObjects[mapData.mainTopologyObject]);
     path = geoPath(projection);
-    bounds = path.bounds(topologyObjects[mainFeature]);
+    bounds = path.bounds(topologyObjects[mapData.mainTopologyObject]);
   }
 
   return { path, bounds, topologyObjects, projection } as GeoParameters;
 };
 
-// TODO type
-const getProjection = (baseMap): GeoProjection => {
+const getProjection = (baseMap: BaseMapData): GeoProjection => {
   const projection = baseMap?.config?.projection;
   switch (projection) {
-    case 'robinson':
+    case Projection.ROBINSON:
       return geoRobinson();
-    case 'albersUsa':
+    case Projection.ALBERS_USA:
       return geoAlbersUsa();
-    case 'mercator':
+    case Projection.MERCATOR:
       return geoMercator();
     default:
-      throw new Error('could not match to a projectsion:'); // TODO improve error
+      throw new Error(`Could not match '${baseMap?.config?.projection}' to any projection.`);
   }
 };
 
