@@ -16,7 +16,6 @@ export const extractGeoParameters = (mapData: MapData, width: number, maxHeight:
   if (!mapData.mainTopologyObject || !mapData.topologyObjectNames.includes(mapData.mainTopologyObject))
     throw new Error(`TopologyObject '${mapData.mainTopologyObject}' does no exist in topologyObjects.`);
 
-  // create topologyObject for each topologyObjectName
   const topologyObjects: TopologyObject = {};
   mapData.topologyObjectNames.forEach(
     (name) => (topologyObjects[name] = getFeatureCollection(mapData.baseMap.entities, name))
