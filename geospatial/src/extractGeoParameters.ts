@@ -7,12 +7,10 @@ import { Projection } from './emums';
 import { BaseMapData, GeoParameters, MapData, TopologyObject } from './interfaces';
 
 export const extractGeoParameters = (mapData: MapData, width: number, maxHeight: number): GeoParameters => {
-  // REVIEW should values in objects be required?
-  if (!mapData?.baseMap?.entities?.objects) throw new Error('Invalid baseMap data provided.');
+  if (!mapData?.baseMap?.entities?.objects) throw new Error('No typologyObjects found in baseMap data.');
 
   if (!mapData.topologyObjectNames?.length) throw new Error('No topologyObjects provided.');
 
-  // REVIEW choose first if non provided or make mandatory and throw if not provided?
   if (!mapData.mainTopologyObject || !mapData.topologyObjectNames.includes(mapData.mainTopologyObject))
     throw new Error(`TopologyObject '${mapData.mainTopologyObject}' does no exist in topologyObjects.`);
 
@@ -53,7 +51,8 @@ const getFeatureCollection = (topology: Topology, objectName: string) => {
   if (topology && topology.objects[objectName]) {
     return feature(topology, topology.objects[objectName]) as FeatureCollection<Geometry, { [name: string]: any }>;
   }
-  return makeFeatureCollection([]); // REVIEW should we throw if objectName does not exist in baseMap?
+
+  return makeFeatureCollection([]);
 };
 
 const makeFeatureCollection = (features: Array<Feature>): FeatureCollection => {
