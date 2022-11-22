@@ -1,4 +1,4 @@
-import { GeoPath } from 'd3-geo';
+import { GeoPath, GeoProjection } from 'd3-geo';
 import { FeatureCollection } from 'geojson';
 
 // TODO Rewrite baseMap according to JSONs stored in DB
@@ -43,6 +43,7 @@ export interface GeoParameters {
   path: GeoPath;
   bounds: [[number, number], [number, number]];
   topologyObjects: TopologyObject;
+  projection: GeoProjection;
 }
 
 export interface TopologyObject {
