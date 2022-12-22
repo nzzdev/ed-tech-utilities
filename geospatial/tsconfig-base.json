@@ -4,7 +4,5 @@
   "compilerOptions": {
     "declaration": true,
     "moduleResolution": "node"
-    // "esModuleInterop": true,
-    // "allowSyntheticDefaultImports": true,
   }
 }
