@@ -1,9 +1,9 @@
-import { GeoPath, GeoProjection } from 'd3-geo';
-import { FeatureCollection } from 'geojson';
-import { Topology } from 'topojson-specification';
+import type { GeoPath, GeoProjection } from 'd3-geo';
+import type { FeatureCollection } from 'geojson';
+import type { Topology } from 'topojson-specification';
 
 export interface MapData {
-  baseMap: BaseMapData;
+  baseMapData: BaseMapData;
   topologyObjectNames: Array<string>;
   mainTopologyObject: string;
 }
@@ -21,7 +21,7 @@ export interface BaseMapData {
     label: string;
   };
   config: BaseMapConfig;
-  entities: Topology;
+  entities: Topology; // TODO check: this is an array instead
 }
 
 export interface BaseMapConfig {
@@ -52,6 +52,7 @@ export interface GeoParameters {
 }
 
 export interface TopologyObject {
+  // [name: string]: FeatureCollection<Polygon, { [name: string]: any }>;
   [name: string]: FeatureCollection;
 }
 
