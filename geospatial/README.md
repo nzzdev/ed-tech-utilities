@@ -1,8 +1,10 @@
 # @nzz/et-utils-geospatial
 
-Library containing helpers for geospatial data task
+Library containing helpers for geospatial data tasks.
 
 ## Content
+
+**NOTE** This library is currently in a pre-release version. Don't use in production!
 
 TODO: Package documentation
 
