@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-geospatial",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Library containing helpers for geospatial data task",
   "prettier": "@nzz/et-utils-config-prettier",
   "repository": {
