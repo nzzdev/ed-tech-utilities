@@ -2,12 +2,18 @@
 
 Extracts the livingdocs elements and places the elements append at the specified HTML target.
 
+## Install
+
+```
+npm install -D @nzz/et-utils-relocate-living-docs-elements
+```
+
 ## Content
 
 ### relocateLivingDocsElements(elementIdPrefix: string, elementIds: string[], targetElement: HTMLElement): void
 
 ```ts
-import { relocateLivingDocsElements } from "@nzz/et-utils-relocateLivingDocsElements";
+import { relocateLivingDocsElements } from "@nzz/et-utils-relocate-living-docs-elements";
 
   relocateLivingDocsElements(elementIdPrefix, elementIds, targetElement));
 };
