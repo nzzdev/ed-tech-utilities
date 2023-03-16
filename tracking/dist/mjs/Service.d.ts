@@ -1,2 +1,2 @@
-declare function trackAction(origin: HTMLElement | Event, actionName: string, eventNonInteractive?: boolean): void;
+declare function trackAction(origin: HTMLElement | Event, componentName: string, actionName: string, eventNonInteractive?: boolean): void;
 export { trackAction };
