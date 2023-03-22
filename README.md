@@ -46,7 +46,7 @@ This allows for easy tracking of commits related to either package name/version 
 4. `npm publish` (automatically runs tests, typescript compiler & rollup bundler)
 5. Commit the new build and updated package.json
 6. Go to [GitHub Repo Releases](https://github.com/nzzdev/ed-tech-utilities/releases)
-7. Create a new release with raised utility repo version as title (raise by change severity of package, e.g.`tracking-v1.1.3`)
+7. Create a new release with raised utility repo version as title `<package-name>-v<package-version-number>` (raise by change severity of package, e.g.`tracking-v1.1.3`)
 8. Add the tag `<package-name>-<package-version-number>` (e.g. `date-1.0.3`)
 9. Add release description or point to package readme (if changes are documented)
 
