@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import * as tService from "../src/Service";
+import * as tService from "../src/trackAction";
 
 describe("Service", () => {
   const componentName = "mock-qcc-element";
