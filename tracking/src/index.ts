@@ -2,3 +2,4 @@
 
 // e.g. Exports all exports of the Service.ts file
 export * from "./trackAction";
+export * from "./enums";
