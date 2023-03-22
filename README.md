@@ -41,12 +41,12 @@ For each npm package release we do a ed-tech-utilities repository release.
 This allows for easy tracking of commits related to either package name/version or repository version.
 
 1. Create a PR from your fix- or feature-branch to main. Maybe have another team member do a code-review. Merge the PR.
-2. `cd <package-folder>`
+2. Pull your changes and `cd <package-folder>`
 3. Update the version in the package.json file
 4. `npm publish` (automatically runs tests, typescript compiler & rollup bundler)
 5. Commit the new build and updated package.json
 6. Go to [GitHub Repo Releases](https://github.com/nzzdev/ed-tech-utilities/releases)
-7. Create a new release with raised utility repo version as title (raise by change severity of package, e.g. v1.1.3)
+7. Create a new release with raised utility repo version as title (raise by change severity of package, e.g.`tracking-v1.1.3`)
 8. Add the tag `<package-name>-<package-version-number>` (e.g. `date-1.0.3`)
 9. Add release description or point to package readme (if changes are documented)
 
