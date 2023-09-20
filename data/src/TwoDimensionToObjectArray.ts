@@ -1,4 +1,4 @@
-function twoDimensionToObjectArray(arrays: (string | number | boolean)[][]) {
+function twoDimensionToObjectArray(arrays: (string | number | boolean | null)[][]) {
   const [keys, ...values] = arrays;
   return values.map((array) =>
     array.reduce((acc, value, index) => {
