@@ -1,9 +1,12 @@
-function trackAction(origin, actionName, eventNonInteractive = false) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.trackAction = void 0;
+function trackAction(origin, componentName, actionName, eventNonInteractive = false) {
     const trackingEvent = new CustomEvent("q-tracking-event", {
         bubbles: true,
         detail: {
             eventInfo: {
-                componentName: "2212-solardaecher",
+                componentName,
                 eventAction: actionName,
                 eventNonInteractive,
             },
@@ -16,7 +19,7 @@ function trackAction(origin, actionName, eventNonInteractive = false) {
         origin.dispatchEvent(trackingEvent);
     }
 }
+exports.trackAction = trackAction;
 function isEvent(eventOrElement) {
     return eventOrElement.target !== undefined;
 }
-export { trackAction };

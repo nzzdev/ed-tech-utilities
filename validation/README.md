@@ -6,7 +6,7 @@ Library containing validator functions
 
 ### isRgbaString
 
-Test if a given string is an RGBA value. You should lowercase the value and remove (or at least trim) all whitespace.
+Test if a given string matches the pattern of an RGBA value.
 
 **Allowed formats**:
 
@@ -16,6 +16,6 @@ Test if a given string is an RGBA value. You should lowercase the value and remo
 ```ts
 import { isRgbaString } from "@nzz/et-utils-validation";
 
-const rgba: String = "RGBA(255 ,255 , 0, 1.0) ".toLowerCase().replace(/ +/g, '');
+const rgba: String = "RGBA(255 ,255 , 0, 1.0) ";
 isRgbaString(rgba); // true
 ```

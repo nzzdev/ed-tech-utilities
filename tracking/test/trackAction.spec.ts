@@ -1,13 +1,15 @@
 /**
  * @jest-environment jsdom
  */
-import * as tService from "../src/Service";
+import * as tService from "../src/trackAction";
 
 describe("Service", () => {
+  const componentName = "mock-qcc-element";
   let trackActionSpy: jest.SpyInstance<
     void,
     [
       origin: HTMLElement | Event,
+      componentName: string,
       actionName: string,
       eventNonInteractive?: boolean
     ]
@@ -28,13 +30,17 @@ describe("Service", () => {
     mockButtonElement.onclick = (event: Event) => {
       console.log("Mock-Action triggered");
       resultEvent = event;
-      tService.trackAction(event, actionName);
+      tService.trackAction(event, componentName, actionName);
     };
 
     // Simulate click
     mockButtonElement.click();
 
-    expect(trackActionSpy).toHaveBeenCalledWith(resultEvent, actionName);
+    expect(trackActionSpy).toHaveBeenCalledWith(
+      resultEvent,
+      componentName,
+      actionName
+    );
   });
 
   it("should track a non-interactive action", () => {
@@ -44,11 +50,16 @@ describe("Service", () => {
     const initTestElement = () => {
       testElement = document.createElement("h1");
       testElement.innerHTML = "Lorem Ipsum";
-      tService.trackAction(testElement, actionName, true);
+      tService.trackAction(testElement, componentName, actionName, true);
     };
 
     initTestElement();
 
-    expect(trackActionSpy).toHaveBeenCalledWith(testElement, actionName, true);
+    expect(trackActionSpy).toHaveBeenCalledWith(
+      testElement,
+      componentName,
+      actionName,
+      true
+    );
   });
 });

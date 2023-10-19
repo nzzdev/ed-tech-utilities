@@ -16,4 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // e.g. Exports all exports of the Service.ts file
-__exportStar(require("./Service"), exports);
+__exportStar(require("./trackAction"), exports);
+__exportStar(require("./enums"), exports);

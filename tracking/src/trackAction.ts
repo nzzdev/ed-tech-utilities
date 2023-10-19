@@ -1,5 +1,6 @@
 function trackAction(
   origin: HTMLElement | Event,
+  componentName: string,
   actionName: string,
   eventNonInteractive = false
 ) {
@@ -7,7 +8,7 @@ function trackAction(
     bubbles: true,
     detail: {
       eventInfo: {
-        componentName: "2212-solardaecher",
+        componentName,
         eventAction: actionName,
         eventNonInteractive,
       },

@@ -16,7 +16,7 @@ import { trackAction } from "@nzz/et-utils-tracking";
 const button = document.createElement("button");
 button.onclick = (event: Event) => {
   // ...
-  trackAction(event, "button-clicked");
+  trackAction(event, "2212-Solardaecher", "button-clicked");
 };
 ```
 
@@ -29,7 +29,7 @@ function initHeadingElement() {
   testElement = document.createElement("h1");
   testElement.innerHTML = "Lorem Ipsum";
 
-  trackAction(testElement, "heading-element-initialized", true);
+  trackAction(testElement, "2217-Dnipro", "heading-element-initialized", true);
 }
 
 initHeadingElement();
