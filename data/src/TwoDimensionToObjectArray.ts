@@ -10,7 +10,7 @@ function twoDimensionToObjectArray(arrays: (string | number | boolean)[][]) {
         res = true;
       } else if (value === false || value === "false") {
         res = false;
-      } else if (!isNaN(+value)) {
+      } else if (!isNaN(+value) && value !== "") {
         res = +value;
       }
 
