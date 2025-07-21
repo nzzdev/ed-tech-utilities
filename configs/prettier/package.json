@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-config-prettier",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Shared Prettier config",
   "main": "index.json",
   "repository": {
