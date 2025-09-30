@@ -18,6 +18,7 @@ class ConnectionInfo {
      * Does a quick connection speed test and decides if the connection is fast or slow. Also, if the client
      * has the "data saver" flag, the speed test is skipped and we will assume 'slow' connection.
      *
+     * @param {Object} options - options
      * @param options.thresholdMbps if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
      * @param options.timeoutMs if the test goes longer than this, stop and assume 'slow'
      */
@@ -42,9 +43,10 @@ function readSaveData() {
 }
 /**
  * Does a quick connection speed test and decides if the connection is fast or slow
- * @param options.thresholdMbps if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
- * @param options.timeoutMs if the test goes longer than this, stop and assume 'slow'
- * @param onDecision do something with the result
+ * @param {Object} options - options
+ * @param options.thresholdMbps - if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
+ * @param options.timeoutMs - if the test goes longer than this, stop and assume 'slow'
+ * @param onDecision - do something with the result
  */
 function measureConnectionSpeed(options, onDecision) {
     // download 3 x 1KB:
