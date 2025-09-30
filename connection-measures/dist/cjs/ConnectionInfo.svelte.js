@@ -64,10 +64,9 @@ function measureConnectionSpeed(options, onDecision) {
     const decide = () => {
         var _a, _b;
         const bps = (_b = (_a = st.results).getDownloadBandwidth) === null || _b === void 0 ? void 0 : _b.call(_a); // bits per second
-        const kbps = Math.floor((bps !== null && bps !== void 0 ? bps : 0) / 1024);
-        const mbps = (kbps !== null && kbps !== void 0 ? kbps : 0) / 1024; // megabits per second
+        const mbps = (bps !== null && bps !== void 0 ? bps : 0) / 1000000; // megabits per second
         decided = typeof bps === 'number' && mbps >= options.thresholdMbps ? 'fast' : 'slow';
-        console.debug(`connection speed ${mbps.toLocaleString('de', { maximumFractionDigits: 1 })}Mbps = ${decided}`);
+        console.debug(`connection speed ${getReadableFileSizeString(bps)} => ${decided}`);
     };
     st.onFinish = () => {
         console.debug(`connection speed onFinish`);
@@ -92,3 +91,12 @@ function measureConnectionSpeed(options, onDecision) {
     }, options.timeoutMs);
     st.play();
 }
+const getReadableFileSizeString = (fileSizeInBytes) => {
+    let i = -1;
+    const byteUnits = [' kbps', ' Mbps', ' Gbps', ' Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps'];
+    do {
+        fileSizeInBytes = fileSizeInBytes / 1024;
+        i++;
+    } while (fileSizeInBytes > 1024);
+    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+};
