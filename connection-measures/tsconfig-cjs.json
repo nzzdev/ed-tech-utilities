@@ -4,6 +4,6 @@
     "module": "commonjs",
     "outDir": "dist/cjs",
     "target": "es2015",
-    "types": ["node", "jest", "svelte"]
+    "types": ["node", "svelte"]
   }
 }

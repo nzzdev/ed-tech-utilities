@@ -3,8 +3,8 @@
   "compilerOptions": {
     "module": "esnext",
     "outDir": "dist/mjs",
-    "target": "es2017",
+    "target": "es2022",
     "lib": ["es2022", "DOM"],
-    "types": ["node", "jest", "svelte"]
+    "types": ["node", "svelte", "vitest/globals"]
   }
 }

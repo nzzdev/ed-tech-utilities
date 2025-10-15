@@ -1,1 +1,1 @@
-export * from './ConnectionInfo.svelte';
+export * from './ConnectionInfoStore.svelte';
