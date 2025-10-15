@@ -7,6 +7,12 @@ export class ConnectionInfo {
   private saveData: boolean | undefined = undefined;
   private connectionSpeed: 'fast' | 'slow' | undefined = undefined;
 
+  onChange?: () => void;
+
+  constructor(onChange?: () => void) {
+    this.onChange = onChange;
+  }
+
   get hasMeasured(): boolean {
      return this.saveData === true || this.connectionSpeed !== undefined;
   }
@@ -30,9 +36,11 @@ export class ConnectionInfo {
    */
   public measureConnectionSpeed(options: { thresholdMbps: number; timeoutMs: number }) {
     this.saveData = ConnectionInfo.readSaveData();
+    this.onChange?.();
     if (!this.saveData) {
       ConnectionInfo.measureConnectionSpeed(options, (decision) => {
         this.connectionSpeed = decision;
+        this.onChange?.();
         console.debug('measured speed', decision);
       });
     }

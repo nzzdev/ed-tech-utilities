@@ -3,11 +3,26 @@ import {ConnectionInfo} from "./ConnectionInfo";
 export class ConnectionInfoStore {
   private connectionInfoBasic = new ConnectionInfo();
 
+  constructor() {
+    this.connectionInfoBasic.onChange = this.react; // update values when they change
+    this.react(); // initial values
+  }
+
+  private react() {
+    this.canUseFastConnection = this.connectionInfoBasic.canUseFastConnection;
+    this.hasMeasured = this.connectionInfoBasic.hasMeasured;
+  }
+
   /**
    * If the measurement has completed with 'fast' and no "data saver" is set, we can use the fast
    * connection. If anything went wrong or until the test is done, always fallback to 'slow'
    */
-  public canUseFastConnection: boolean = $derived(this.connectionInfoBasic.canUseFastConnection);
+  public canUseFastConnection: boolean = $state(false);
+
+  /**
+   * Returns true as soon as the measurement has finished or aborted
+   */
+  public hasMeasured = $state(false);
 
   /**
    *
@@ -21,10 +36,5 @@ export class ConnectionInfoStore {
   public measureConnectionSpeed(options: { thresholdMbps: number; timeoutMs: number }) {
     this.connectionInfoBasic.measureConnectionSpeed(options);
   }
-
-  /**
-   * Returns true as soon as the measurement has finished or aborted
-   */
-  public hasMeasured = $derived(this.connectionInfoBasic.hasMeasured);
 
 }
