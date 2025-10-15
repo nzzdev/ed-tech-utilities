@@ -20,13 +20,12 @@
     "directory": "connection-measures"
   },
   "scripts": {
-    "prepublishOnly": "npm run test && npm run clean && npm run buildMjs && npm run buildCjs && npm run addMjsPackageJson && npm run addCjsPackageJson && npm run addReadme",
+    "prepublishOnly": "npm run test && npm run clean && npm run buildMjs && npm run buildCjs && npm run addMjsPackageJson && npm run addCjsPackageJson",
     "clean": "rimraf dist",
     "buildMjs": "tsc -p tsconfig-mjs.json",
     "addMjsPackageJson": "cp ./package-mjs.json ./dist/mjs/package.json",
     "buildCjs": "tsc -p tsconfig-cjs.json",
     "addCjsPackageJson": "cp ./package-cjs.json ./dist/cjs/package.json",
-    "addReadme": "cp ./README.md ./dist/cjs/ && cp ./README.md ./dist/mjs/",
     "start": "npm run buildMjs -- -w",
     "test": "vitest run",
     "test:watch": "vitest"
