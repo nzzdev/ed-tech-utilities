@@ -11,9 +11,12 @@ vi.mock('@cloudflare/speedtest', () => {
     class FakeSpeedTest {
         play = vi.fn();
         pause = vi.fn();
-        onFinish?: () => void;
+        onFinish?: (results: Results) => void;
         onError?: () => void;
-        results = { getDownloadBandwidth: vi.fn() };
+        results = {
+            getDownloadBandwidth: vi.fn(),
+            getSummary: vi.fn().mockReturnValue('summary')
+        };
     }
 
     let testBehavior: TestBehavior;
@@ -31,7 +34,13 @@ vi.mock('@cloudflare/speedtest', () => {
                     return;
                 }
                 // TODO on timeout
-                lastInstance.onFinish?.();
+                lastInstance.onFinish?.({
+                    getDownloadBandwidth: vi.fn().mockImplementation(vi.fn().mockReturnValue(testBehavior.error ? undefined : testBehavior.clientBandwidth)),
+                    getSummary: vi.fn().mockReturnValue({
+                        download: 100000
+                    }),
+
+                });
             })
         });
 
@@ -51,7 +60,7 @@ vi.mock('@cloudflare/speedtest', () => {
 // Important: imports must be _after_ mocking
 import { ConnectionInfo } from '../src/ConnectionInfo';
 // @ts-expect-error we need this for the mock test behavior
-import { _setTestBehavior, _getLastInstance } from '@cloudflare/speedtest';
+import {_setTestBehavior, _getLastInstance, Results} from '@cloudflare/speedtest';
 
 describe('ConnectionInfo', async () => {
     beforeEach(() => {
@@ -81,8 +90,8 @@ describe('ConnectionInfo', async () => {
         await basicFn(52_000_000, undefined, 50, 100,  false,true);
     })
 
-    it('10Mbps client (threshold 50Mbps) -> slow', async () => {
-        await basicFn(10_000_000, undefined, 50, 100,  false,false);
+    it('48Mbps client (threshold 50Mbps) -> slow', async () => {
+        await basicFn(48_000_000, undefined, 50, 100,  false,false);
     })
 
 
@@ -112,7 +121,10 @@ describe('ConnectionInfo', async () => {
         expect(connectionInfo.canUseFastConnection).toBeFalsy();
 
         // execute
-        connectionInfo.measureConnectionSpeed({ thresholdMbps: thresholdMbps, timeoutMs: timeoutMs });
+        connectionInfo.measureConnectionSpeed({
+            thresholdMbps: thresholdMbps,
+            timeoutMs: timeoutMs
+        });
 
         // proceed in time TODO choose wisely
         // vi.runAllTimers?.();

@@ -1,16 +1,16 @@
-import {ConnectionInfo} from "./ConnectionInfo";
+import {ConnectionInfo, ConnectionSpeedTestOptions} from "./ConnectionInfo";
 
 export class ConnectionInfoStore {
   private connectionInfoBasic = new ConnectionInfo();
 
   constructor() {
-    this.connectionInfoBasic.onChange = this.react; // update values when they change
-    this.react(); // initial values
+    this.connectionInfoBasic.onChange = () => this.updateFrom(this.connectionInfoBasic); // update values when they change
+    this.updateFrom(this.connectionInfoBasic); // initial values
   }
 
-  private react() {
-    this.canUseFastConnection = this.connectionInfoBasic.canUseFastConnection;
-    this.hasMeasured = this.connectionInfoBasic.hasMeasured;
+  private updateFrom(ci: ConnectionInfo) {
+    this.canUseFastConnection = ci.canUseFastConnection;
+    this.hasMeasured = ci.hasMeasured;
   }
 
   /**
@@ -29,11 +29,11 @@ export class ConnectionInfoStore {
    * Does a quick connection speed test and decides if the connection is fast or slow. Also, if the client
    * has the "data saver" flag, the speed test is skipped and we will assume 'slow' connection.
    *
-   * @param {Object} options - options
+   * @param {ConnectionSpeedTestOptions} options - options
    * @param options.thresholdMbps if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
    * @param options.timeoutMs if the test goes longer than this, stop and assume 'slow'
    */
-  public measureConnectionSpeed(options: { thresholdMbps: number; timeoutMs: number }) {
+  public measureConnectionSpeed(options: ConnectionSpeedTestOptions) {
     this.connectionInfoBasic.measureConnectionSpeed(options);
   }
 

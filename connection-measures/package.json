@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-connection-measures",
-  "version": "0.0.4",
+  "version": "0.0.23",
   "type": "module",
   "description": "Reads connection infos and/or measures the speed for a high/low resolution decision",
   "main": "dist/cjs/index.js",

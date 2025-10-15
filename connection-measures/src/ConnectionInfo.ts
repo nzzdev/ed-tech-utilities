@@ -1,5 +1,9 @@
-import SpeedTest from '@cloudflare/speedtest';
+import SpeedTest, {Results} from '@cloudflare/speedtest';
 
+export interface ConnectionSpeedTestOptions {
+  thresholdMbps: number;
+  timeoutMs: number;
+}
 /**
  * Svelte-free implementation in order to be unit-testable
  */
@@ -30,11 +34,11 @@ export class ConnectionInfo {
    * Does a quick connection speed test and decides if the connection is fast or slow. Also, if the client
    * has the "data saver" flag, the speed test is skipped and we will assume 'slow' connection.
    *
-   * @param {Object} options - options
+   * @param {ConnectionSpeedTestOptions} options - options
    * @param options.thresholdMbps if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
    * @param options.timeoutMs if the test goes longer than this, stop and assume 'slow'
    */
-  public measureConnectionSpeed(options: { thresholdMbps: number; timeoutMs: number }) {
+  public measureConnectionSpeed(options: ConnectionSpeedTestOptions) {
     this.saveData = ConnectionInfo.readSaveData();
     this.onChange?.();
     if (!this.saveData) {
@@ -58,43 +62,52 @@ export class ConnectionInfo {
 
   /**
    * Does a quick connection speed test and decides if the connection is fast or slow
-   * @param {Object} options - options
+   * @param {ConnectionSpeedTestOptions} options - options
    * @param options.thresholdMbps - if the connection is faster than this, we decide it is 'fast', otherwise 'slow'
    * @param options.timeoutMs - if the test goes longer than this, stop and assume 'slow'
    * @param onDecision - do something with the result
    */
   private static measureConnectionSpeed(
-      options: {
-        thresholdMbps: number;
-        timeoutMs: number;
-      },
-      onDecision: (decision: 'fast' | 'slow') => void,
+      options: ConnectionSpeedTestOptions,
+      onDecision: (decision: 'fast' | 'slow') => void
   ) {
-    // download 3 x 1KB:
-    const packageSizeBytes = 1024 * 10;
-    const packageCount = 3;
     let decided: 'fast' | 'slow';
     console.log('measuring connection speed...');
 
     const st = new SpeedTest({
       autoStart: false,
-      measureDownloadLoadedLatency: false,
+      measureDownloadLoadedLatency: true,
       measureUploadLoadedLatency: false,
-      measurements: [{ type: 'download', bytes: packageSizeBytes, count: packageCount }],
-      bandwidthMinRequestDuration: 10,
+      bandwidthFinishRequestDuration: 500, // The minimum duration (in milliseconds) to reach in download/upload measurement sets for halting further measurements with larger file sizes in the same direction.
+      measurements: [
+        // initial download estimation (important: bypassMinDuration=true, otherwise a fast connection will get no results!)
+        { type: 'download', bytes: 1e4, count: 1, bypassMinDuration: true }, // 1KB
+
+        // more precise measurements
+        { type: 'download', bytes: 1e4, count: 10 }, // 5 x 1KB
+        { type: 'download', bytes: 1e5, count: 10 }, // 5 x 10KB
+        { type: 'download', bytes: 1e6, count: 2 }, // 2 x 100KB
+      ],
     });
 
     const decide = () => {
-      const bps = st.results.getDownloadBandwidth?.(); // bits per second
-      const mbps = (bps ?? 0) / 1000000; // megabits per second
+      const finalOrTmpResults = st.results;
+
+      const bps = finalOrTmpResults.getDownloadBandwidth?.(); // bits per second
+      if (bps === 0) {
+        console.info(`connection speed bandwidth returned nothing`, bps, finalOrTmpResults.getSummary());
+        return;
+      }
+      const mbps = (bps ?? 0) / 1_000_000; // megabits per second
       decided = typeof bps === 'number' && mbps >= options.thresholdMbps ? 'fast' : 'slow';
-      console.debug(`connection speed ${ConnectionInfo.getReadableFileSizeString(bps)} => ${decided}`);
+      console.info(`connection speed ${ConnectionInfo.getReadableFileSizeString(bps)} => ${decided}`, bps, finalOrTmpResults, finalOrTmpResults.getSummary(), options.thresholdMbps);
+
     };
 
-    st.onFinish = () => {
+    st.onFinish = (_results: Results) => {
       console.debug(`connection speed onFinish`);
       decide();
-      onDecision(decided);
+      onDecision(decided ?? 'slow');
     };
 
     // Fehler -> slow
@@ -110,7 +123,7 @@ export class ConnectionInfo {
         console.debug(`connection speed onTimeout`);
         decide();
         st.pause();
-        onDecision(decided);
+        onDecision(decided ?? 'slow');
       }
     }, options.timeoutMs);
 
@@ -119,11 +132,11 @@ export class ConnectionInfo {
 
   public static getReadableFileSizeString(fileSizeInBytes)  {
     let i = -1;
-    const byteUnits = [' kbps', ' Mbps', ' Gbps', ' Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps'];
+    const byteUnits = [' kbps', ' Mbps', ' Gbps'];
     do {
-      fileSizeInBytes = fileSizeInBytes / 1024;
+      fileSizeInBytes = fileSizeInBytes / 1000;
       i++;
-    } while (fileSizeInBytes > 1024);
+    } while (fileSizeInBytes > 1000);
 
     return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
   };
