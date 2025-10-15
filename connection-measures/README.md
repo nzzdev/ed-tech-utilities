@@ -31,3 +31,11 @@ function initHighOrLowRes() {
   }
 }
 ```
+
+## Contribute
+### Example
+Run the example while developing the speed test further
+
+```
+npm run dev
+```

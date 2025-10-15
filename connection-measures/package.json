@@ -1,6 +1,6 @@
 {
   "name": "@nzz/et-utils-connection-measures",
-  "version": "0.0.23",
+  "version": "0.0.29",
   "type": "module",
   "description": "Reads connection infos and/or measures the speed for a high/low resolution decision",
   "main": "dist/cjs/index.js",
@@ -28,7 +28,8 @@
     "addCjsPackageJson": "cp ./package-cjs.json ./dist/cjs/package.json",
     "start": "npm run buildMjs -- -w",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "dev": "vite dev"
   },
   "author": "Andrea Brühlmann",
   "license": "MIT",

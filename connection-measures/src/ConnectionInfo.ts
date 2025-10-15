@@ -80,13 +80,15 @@ export class ConnectionInfo {
       measureUploadLoadedLatency: false,
       bandwidthFinishRequestDuration: 500, // The minimum duration (in milliseconds) to reach in download/upload measurement sets for halting further measurements with larger file sizes in the same direction.
       measurements: [
+        { type: 'latency', numPackets: 1 }, // initial latency estimation
         // initial download estimation (important: bypassMinDuration=true, otherwise a fast connection will get no results!)
-        { type: 'download', bytes: 1e4, count: 1, bypassMinDuration: true }, // 1KB
+        { type: 'download', bytes: 1_000, count: 1, bypassMinDuration: true }, // 1KB
 
         // more precise measurements
-        { type: 'download', bytes: 1e4, count: 10 }, // 5 x 1KB
-        { type: 'download', bytes: 1e5, count: 10 }, // 5 x 10KB
-        { type: 'download', bytes: 1e6, count: 2 }, // 2 x 100KB
+        { type: 'latency', numPackets: 3 }, // more latency
+        { type: 'download', bytes: 1_000, count: 3 }, // 1KB
+        { type: 'download', bytes: 10_000, count: 5 }, // 10KB
+        { type: 'download', bytes: 100_000, count: 1 }, // 100KB
       ],
     });
 
@@ -100,7 +102,8 @@ export class ConnectionInfo {
       }
       const mbps = (bps ?? 0) / 1_000_000; // megabits per second
       decided = typeof bps === 'number' && mbps >= options.thresholdMbps ? 'fast' : 'slow';
-      console.info(`connection speed ${ConnectionInfo.getReadableFileSizeString(bps)} => ${decided}`, bps, finalOrTmpResults, finalOrTmpResults.getSummary(), options.thresholdMbps);
+      console.info(`connection speed ${ConnectionInfo.getReadableSpeedBps(bps)} => ${
+        decided} (threshold: ${this.getReadableSpeedBps(options.thresholdMbps * 1_000_000)})`, bps);
 
     };
 
@@ -130,15 +133,15 @@ export class ConnectionInfo {
     st.play();
   }
 
-  public static getReadableFileSizeString(fileSizeInBytes)  {
+  public static getReadableSpeedBps(bps)  {
     let i = -1;
     const byteUnits = [' kbps', ' Mbps', ' Gbps'];
     do {
-      fileSizeInBytes = fileSizeInBytes / 1000;
+      bps = bps / 1000;
       i++;
-    } while (fileSizeInBytes > 1000);
+    } while (bps > 1000);
 
-    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+    return Math.max(bps, 0.1).toFixed(1) + byteUnits[i];
   };
 
 }
